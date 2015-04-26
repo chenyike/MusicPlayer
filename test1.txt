@@ -1,0 +1,17 @@
+He's a Pirate
+Hans Zimmer
+14
+0.2 D 5 NATURAL true
+0.1 D 5 NATURAL false
+0.2 D 5 NATURAL false
+0.1 D 5 NATURAL false
+0.2 D 5 NATURAL true
+0.1 D 5 NATURAL false
+0.1 D 5 NATURAL false
+0.1 D 5 NATURAL false
+0.1 D 5 NATURAL true
+0.2 D 5 NATURAL false
+0.1 D 5 NATURAL false
+0.2 D 5 NATURAL false
+0.1 D 10 NATURAL false
+0.2 D 1 NATURAL true
