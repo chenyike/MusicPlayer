@@ -30,17 +30,16 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 public class MusicPlayer implements  StdAudio.AudioEventListener {
-
-	// instance variables
 	private Song song;
 	private boolean playing = false; // whether a song is currently playing
 	private JFrame frame;
-	//panel1 is used to lay out welcomeText and status label and loadButton
-	//panel2 is used to lay out currentTimeSlider, currentTimeLabel and totalTimeLabel
-	//panel3 is used to layout 6 JButtons
-	//Panel4 is used to lay out the tempo, tempoText, and changeButton
+	/*
+	 * panel1 is used to lay out welcomeText and status label and loadButton
+	 * panel2 is used to lay out currentTimeSlider, currentTimeLabel and totalTimeLabel
+	 * panel3 is used to layout 6 JButtons
+	 * Panel4 is used to lay out the tempo, tempoText, and changeButton
+	 */
 	private JPanel panel1,panel2,panel3,panel4; 
-
 	private JFileChooser fileChooser; // this is the file choose button
 	private JLabel welcomeText; //this the label that says 'welcome to the music player
 	private JSlider currentTimeSlider; //this is the slider that shows song playing progress
@@ -64,6 +63,7 @@ public class MusicPlayer implements  StdAudio.AudioEventListener {
 		frame.setVisible(true);
 	}
 
+	
 	/**
 	 * create a ClickListener that implements ActionListener, dealing with commands such as "Play", "Stop", etc
 	 */
@@ -112,7 +112,7 @@ public class MusicPlayer implements  StdAudio.AudioEventListener {
 
 
 	/**
-	 * main function, used to create a new MusicPlayer class and get the program running
+	 * main function, used to create a new MusicPlayer class and get the program up and running
 	 * @param args
 	 */
 	public static void main(String[] args) {
