@@ -10,8 +10,6 @@ import org.junit.Test;
  * The Class SongTest.
  */
 public class SongTest {
-    
-
     private Song song1;
     private Song song2;
     private Song song3;
@@ -60,6 +58,7 @@ public class SongTest {
                 + "0.1 D 5 NATURAL false\n0.1 D 5 NATURAL false\n0.1 D 5 NATURAL false\n0.1 D 5 NATURAL true\n0.2 D 5 NATURAL false\n"
                 + "0.1 D 5 NATURAL false\n0.2 D 5 NATURAL false\n0.1 D 10 NATURAL false\n0.2 D 1 NATURAL true\n0.1 D 5 NATURAL true\n"
                 + "0.2 D 5 NATURAL false\n0.1 D 5 NATURAL false\n0.2 D 5 NATURAL false\n0.1 D 10 NATURAL false\n0.2 D 1 NATURAL true\n", song5.toString());
+        
         song1.play();
         assertEquals("0.25 D 4 NATURAL false\n0.25 D 4 NATURAL false\n0.5 E 4 NATURAL false\n0.5 D 4 NATURAL false\n0.5 G 4 NATURAL false\n"
                 + "1.0 F 4 SHARP false\n0.25 D 4 NATURAL false\n0.25 D 4 NATURAL false\n0.5 E 4 NATURAL false\n0.5 D 4 NATURAL false\n"

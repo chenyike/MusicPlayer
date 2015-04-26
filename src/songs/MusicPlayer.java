@@ -9,10 +9,12 @@ package songs;
  */
 
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,12 +42,12 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
     private JFileChooser fileChooser;
     private JLabel welcomeText;
     private JSlider currentTimeSlider;
-    private JButton button1, button2, button3, button4, button5, button6, button7, button8;
+    private JButton playButton, stopButton, loadButton, reverseButton, upButton, downButton, changeButton, pauseButton;
     private JTextField tempoText;
 
 
-    private boolean loaded =false;
-
+    private boolean loaded =false; 
+    
     //these are the two labels that indicate time
     // to the right of the slider
     private JLabel currentTimeLabel;
@@ -55,7 +57,8 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
     private JLabel statusLabel; 
     private JLabel tempo;
 
-    /*
+    /**
+     * Constructor
      * Creates the music player GUI window and graphical components.
      */
     public MusicPlayer() {
@@ -87,7 +90,6 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
                         System.out.println("not able to load from the file");
                     }
                 } else if (cmd == "Reverse") {
-                    //TODO - fill this 
                     System.out.println("Reverse");
                     System.out.println(playing);
                     song.reverse();
@@ -130,7 +132,7 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
 
 
 
-    /*
+    /**
      * Called when the user interacts with graphical components, such as
      * clicking on a button.
      */
@@ -138,7 +140,7 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
 
     }
 
-    /*
+    /**
      * Called when audio events occur in the StdAudio library. We use this to
      * set the displayed current time in the slider.
      */
@@ -151,14 +153,17 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
     }
 
 
-
+    /**
+     * main function
+     * @param args
+     */
     public static void main(String[] args) {
         MusicPlayer mp = new MusicPlayer();
-        mp.createComponents();
+
     }
 
 
-    /*
+    /**
      * Sets up the graphical components in the window and event listeners.
      */
     private void createComponents() {
@@ -176,31 +181,31 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
         totalTimeLabel = new JLabel("00000.00 sec");
 
         panel3 = new JPanel();
-        button1 = new JButton("Play");
-        button2 = new JButton("Stop");
-        button3 = new JButton("Load");
-        button4 = new JButton("Reverse");
-        button5 = new JButton("Up");
-        button6 = new JButton("Down");
-        button7= new JButton("Change");
-        button8 = new JButton("Pause");
+        playButton = new JButton("Play");
+        stopButton = new JButton("Stop");
+        loadButton = new JButton("Load");
+        reverseButton = new JButton("Reverse");
+        upButton = new JButton("Up");
+        downButton = new JButton("Down");
+        changeButton= new JButton("Change");
+        pauseButton = new JButton("Pause");
 
         fileChooser = new JFileChooser();
 
-        //add listener for button1
+        //add listener for playButton
         ClickListener cl = new ClickListener();
-        button1.addActionListener(cl);
-        button2.addActionListener(cl);
-        button3.addActionListener(cl);
-        button4.addActionListener(cl);
-        button5.addActionListener(cl);
-        button6.addActionListener(cl);
-        button7.addActionListener(cl);
-        button8.addActionListener(cl);
+        playButton.addActionListener(cl);
+        stopButton.addActionListener(cl);
+        loadButton.addActionListener(cl);
+        reverseButton.addActionListener(cl);
+        upButton.addActionListener(cl);
+        downButton.addActionListener(cl);
+        changeButton.addActionListener(cl);
+        pauseButton.addActionListener(cl);
 
-        // button1.addActionListener(c1);
+        // playButton.addActionListener(c1);
         statusLabel = new JLabel();
-        tempo = new JLabel("Tempo:  ");
+        tempo = new JLabel("Tempo: ");
         currentTimeLabel = new JLabel("00000.00/");
 
         tempoText = new JTextField("enter your tempo, default is 1:");
@@ -209,8 +214,9 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
 
         doEnabling();
     }
+    
 
-    /*
+    /**
      * Sets whether every button, slider, spinner, etc. should be currently
      * enabled, based on the current state of whether a song has been loaded and
      * whether or not it is currently playing. This is done to prevent the user
@@ -219,45 +225,43 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
      */
     private void doEnabling() {
         if(playing == false && loaded == false){
-            button1.setEnabled(false);
-            button2.setEnabled(false);
-            button3.setEnabled(true);
-            button4.setEnabled(false);
-            button5.setEnabled(false);
-            button6.setEnabled(false);
-            button7.setEnabled(false);
-            button8.setEnabled(false);
+            playButton.setEnabled(false);
+            stopButton.setEnabled(false);
+            loadButton.setEnabled(true);
+            reverseButton.setEnabled(false);
+            upButton.setEnabled(false);
+            downButton.setEnabled(false);
+            changeButton.setEnabled(false);
+            pauseButton.setEnabled(false);
             tempoText.setEnabled(false);
-            currentTimeSlider.setEnabled(false);       
+            
         }
         else if(playing == false && loaded == true){
-            button1.setEnabled(true);
-            button2.setEnabled(false);
-            button3.setEnabled(false);
-            button4.setEnabled(true);
-            button5.setEnabled(true);
-            button6.setEnabled(true);
-            button7.setEnabled(true);
-            button8.setEnabled(false);
+            playButton.setEnabled(true);
+            stopButton.setEnabled(false);
+            loadButton.setEnabled(false);
+            reverseButton.setEnabled(true);
+            upButton.setEnabled(true);
+            downButton.setEnabled(true);
+            changeButton.setEnabled(true);
+            pauseButton.setEnabled(false);
             tempoText.setEnabled(true);
-            currentTimeSlider.setEnabled(true);
         }
         else if(playing == true && loaded == true){
-            button1.setEnabled(false);
-            button2.setEnabled(true);
-            button3.setEnabled(false);
-            button4.setEnabled(false);
-            button5.setEnabled(false);
-            button6.setEnabled(false);
-            button7.setEnabled(false);
-            button8.setEnabled(true);
+            playButton.setEnabled(false);
+            stopButton.setEnabled(true);
+            loadButton.setEnabled(false);
+            reverseButton.setEnabled(false);
+            upButton.setEnabled(false);
+            downButton.setEnabled(false);
+            changeButton.setEnabled(false);
+            pauseButton.setEnabled(true);
             tempoText.setEnabled(false);
-            currentTimeSlider.setEnabled(false);
         }
 
     }
 
-    /*
+    /**
      * Performs layout of the components within the graphical window. 
      * Also make the window a certain size and put it in the center of the screen.
      */
@@ -265,7 +269,7 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
         //TODO - figure out how to layout the components
         frame.pack();
 
-        frame.setSize(640, 400);
+        frame.setSize(640, 480);
         // place in the center
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setLocation(dim.width / 2 - frame.getSize().width / 2, dim.height
@@ -285,8 +289,9 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
         c.weighty = 0.5;   //request any extra vertical space
         c.gridx = 1;
         c.gridy = 1;
-        panel1.add(button3,c);
+        panel1.add(loadButton,c);
         
+
         panel2.setLayout(new GridBagLayout());
         c.weightx = 1;
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -308,12 +313,12 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
         panel2.add(totalTimeLabel,c);
 
         panel3.setLayout(new GridLayout(2, 3));
-        panel3.add(button1);
-        panel3.add(button8);
-        panel3.add(button2);
-        panel3.add(button4);
-        panel3.add(button5);
-        panel3.add(button6);
+        panel3.add(playButton);
+        panel3.add(pauseButton);
+        panel3.add(stopButton);
+        panel3.add(reverseButton);
+        panel3.add(upButton);
+        panel3.add(downButton);
         
 
         panel4.setLayout(new BoxLayout(panel4,BoxLayout.LINE_AXIS));
@@ -323,9 +328,8 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
         
         panel4.add( tempoText);
         
-        panel4.add(button7);
+        panel4.add(changeButton);
         
-
         
         
         
@@ -359,7 +363,7 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
     }
 
 
-    /*
+    /**
      * Returns the estimated current time within the overall song, in seconds.
      */
     private double getCurrentTime() {
@@ -401,7 +405,7 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
         doEnabling();
     }
 
-    /*
+    /**
      * Initiates the playing of the current song in a separate thread (so
      * that it does not lock up the GUI). 
      * You do not need to change this method.
@@ -430,7 +434,7 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
         }
     }
 
-    /*
+    /**
      * Sets the current time display slider/label to show the given time in
      * seconds. Bounded to the song's total duration as reported by the song.
      */
@@ -441,12 +445,11 @@ public class MusicPlayer implements ActionListener, StdAudio.AudioEventListener 
         currentTimeSlider.setValue((int) (100 * time / total));
     }
 
-    /*
+    /**
      * Updates the total time label on the screen to the current total duration.
      */
     private void updateTotalTime() {
         double total = song.getTotalDuration();
-
         totalTimeLabel.setText(String.format("%08.2f sec", total));
     }
 }
